@@ -7,7 +7,7 @@ export const signUp = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const newUser = await createUser(email, password);
     return successResponse(res, 201, "User created successfully", newUser);
-  } catch (err) {
+  } catch ( err ) {
     return errorResponse(res, err.statusCode || 500, err.message || "Server error");
   }
 }
@@ -17,7 +17,7 @@ export const signIn = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await authenticateUser(email, password);
     return successResponse(res, 200, "User authenticated successfully", user);
-  } catch (err) {
+  } catch ( err ) {
     return errorResponse(res, err.statusCode || 500, err.message || "Server error");
   }
 }

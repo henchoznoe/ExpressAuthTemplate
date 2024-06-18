@@ -5,6 +5,29 @@ import { signIn, signUp } from "../ctrl/auth";
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/auth/sign-up:
+ *   post:
+ *     summary: Sign up a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User signed up successfully
+ *       400:
+ *         description: Invalid input
+ */
 router.post(
   '/sign-up',
   [
@@ -15,6 +38,30 @@ router.post(
   signUp
 );
 
+
+/**
+ * @swagger
+ * /api/auth/sign-in:
+ *   post:
+ *     summary: Sign in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User signed in successfully
+ *       400:
+ *         description: Invalid input
+ */
 router.post(
   '/sign-in',
   [
