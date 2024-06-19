@@ -1,4 +1,4 @@
-import { Application, NextFunction, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 
 export const setupCORS = (app: Application) => {
   app.use((_: Request, res: Response, next: NextFunction) => {
@@ -8,3 +8,7 @@ export const setupCORS = (app: Application) => {
     next();
   });
 };
+
+export const setupParser = (app: Application) => {
+  app.use(express.json());
+}

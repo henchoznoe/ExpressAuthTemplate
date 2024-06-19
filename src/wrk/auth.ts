@@ -10,7 +10,7 @@ export const createUser = async (email: string, password: string) => {
       email
     }
   });
-  if ( existingUser ) throw new HttpError(409, "User already exists");
+  if ( existingUser ) throw new HttpError(409, `User with email ${email} already exists`);
   const hashedPassword = await hash(password, 10);
   const user: User = await db.user.create({
     data: {
@@ -29,7 +29,7 @@ export const authenticateUser = async (email: string, password: string) => {
     }
   });
   if ( !user || !await compare(password, user.password) ) {
-    throw new HttpError(401, "Invalid credentials");
+    throw new HttpError(401, `Invalid credentials for user ${email}`);
   }
   const token = generateToken(user.id, user.email);
   const { password: newUserPassword, ...newUser } = user;
