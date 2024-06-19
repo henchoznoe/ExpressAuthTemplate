@@ -1,9 +1,9 @@
 import express from 'express';
 import { check } from "express-validator";
-import { handleValidationErrors } from "../http/http-responses";
+import { handleValidationErrors } from "../middleware/fields-validation";
 import { signIn, signUp } from "../ctrl/auth";
 
-const router = express.Router();
+export const router = express.Router();
 
 /**
  * @swagger
@@ -71,5 +71,3 @@ router.post(
   handleValidationErrors,
   signIn
 );
-
-export default router;

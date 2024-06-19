@@ -6,7 +6,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Node Auth API',
+      title: 'Express Auth Template API',
       version: '1.0.0',
       description: 'A simple Express API',
     },

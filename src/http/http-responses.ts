@@ -1,6 +1,10 @@
-import { NextFunction, Request, Response } from "express";
-import { ResponseType } from "responses";
-import { validationResult } from "express-validator";
+import { Response } from "express";
+
+type ResponseType = {
+  success: boolean;
+  message: string;
+  data?: any;
+}
 
 const sendResponse = (res: Response, statusCode: number, success: boolean, message: string, data?: any): void => {
   let response: ResponseType = {
@@ -17,10 +21,4 @@ export const successResponse = (res: Response, statusCode: number, message: stri
 
 export const errorResponse = (res: Response, statusCode: number, message: string) => {
   sendResponse(res, statusCode, false, message);
-};
-
-export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
-  const errors = validationResult(req);
-  if ( !errors.isEmpty() ) return errorResponse(res, 400, errors.array().map(error => error.msg).join(' '));
-  next();
 };

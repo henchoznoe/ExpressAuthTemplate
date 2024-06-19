@@ -11,6 +11,14 @@ model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
+  roleId    Int
+  role      Role     @relation(fields: [roleId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  label String @unique
+  users User[]
 }

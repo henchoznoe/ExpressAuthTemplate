@@ -3,6 +3,7 @@ import { HttpError } from "../http/HttpError";
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { User } from "@prisma/client";
+import { JWTPayloadType, Role } from "../types/auth";
 
 export const createUser = async (email: string, password: string) => {
   const existingUser: User = await db.user.findUnique({
@@ -15,8 +16,9 @@ export const createUser = async (email: string, password: string) => {
   const user: User = await db.user.create({
     data: {
       email,
-      password: hashedPassword
-    },
+      password: hashedPassword,
+      roleId: Role.USER
+    }
   });
   const { password: newUserPassword, ...newUser } = user;
   return newUser;
@@ -31,16 +33,19 @@ export const authenticateUser = async (email: string, password: string) => {
   if ( !user || !await compare(password, user.password) ) {
     throw new HttpError(401, `Invalid credentials for user ${email}`);
   }
-  const token = generateToken(user.id, user.email);
+  const token = generateToken(user);
   const { password: newUserPassword, ...newUser } = user;
   return { ...newUser, token };
 }
 
-const generateToken = (id: string, email: string) => {
-  return sign({
-      id,
-      email
-    },
+const generateToken = (user: User) => {
+  const payload: JWTPayloadType = {
+    id: user.id,
+    email: user.email,
+    roleId: user.roleId
+  }
+  return sign(
+    payload,
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES_IN,
