@@ -1,7 +1,7 @@
-# Node.js Authentication Template
+# Node.js and Express.js Authentication Template
 
 ## Description
-This project is a template for setting up authentication in a Node.js application using TypeScript, Prisma and PostgreSQL.
+This project is a template for setting up authentication in a Node.js application using Express.js, TypeScript, Prisma and PostgreSQL.
 
 ## Prerequisites
 - Node.js
@@ -37,5 +37,6 @@ npm run dev
 ```
 
 ## Usage
+* Open http://localhost:5000/api-docs to view the documentation provided by Swagger UI.
 * Call http://localhost:5000/api/auth/sign-up in Postman with a JSON body (email and password) to sign up.
 * Call http://localhost:5000/api/auth/sign-in in Postman with a JSON body (email and password) to sign in.

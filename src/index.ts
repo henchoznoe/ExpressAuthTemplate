@@ -7,13 +7,13 @@ import 'dotenv/config';
 import { errorResponse } from "./http/http-responses";
 import { logger } from "./lib/logger";
 
-const app: Application = express();
+export const app: Application = express();
 
-setupCORS(app);
-setupParser(app);
-setupLogger(app);
-setupSwagger(app);
-setupRoutes(app);
+setupCORS();
+setupParser();
+setupLogger();
+setupSwagger();
+setupRoutes();
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   logger.error(err.message || 'An unknown error occurred...');
@@ -24,5 +24,5 @@ app.listen(process.env.SERVER_PORT, () => {
   logger.info(`NODE_ENV=${process.env.NODE_ENV}`);
   logger.info(`Server running : http://localhost:${process.env.SERVER_PORT}`);
   logger.info(`Swagger running : http://localhost:${process.env.SERVER_PORT}/api-docs`);
-  logger.info('Server started');
+  logger.info('Server started !');
 });
