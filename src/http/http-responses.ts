@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { logger } from "../lib/logger";
 
 type ResponseType = {
   success: boolean;
@@ -12,6 +13,7 @@ const sendResponse = (res: Response, statusCode: number, success: boolean, messa
     message
   }
   if ( data ) response.data = data;
+  success ? logger.info(`Message : ${message}`) : logger.error(`Message : ${message}`);
   res.status(statusCode).json(response);
 }
 

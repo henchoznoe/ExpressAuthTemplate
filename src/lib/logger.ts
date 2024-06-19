@@ -9,28 +9,19 @@ export const setupLogger = () => {
     return `${res.statusCode} - ${httpStatusDescriptions[res.statusCode] || 'Unknown Status'}`;
   });
 
-  morgan.token('host', (req: Request) => {
-    return req.hostname
-  });
-
-  const customFormat = ':host -> :method -> :url [:statusName]';
+  const customFormat = ':method -> :url [:statusName]';
 
   app.use(morgan(customFormat, {
     stream: {
       write: (message: string) => {
-        logger.info(message.trim());
+        const statusCode = parseInt(message.split('[')[1].split(' - ')[0], 10);
+        if (statusCode < 400) {
+          logger.info(message.trim());
+        } else {
+          logger.error(message.trim());
+        }
       }
-    },
-    skip: (_, res) => res.statusCode >= 400
-  }));
-
-  app.use(morgan(customFormat, {
-    stream: {
-      write: (message: string) => {
-        logger.error(message.trim());
-      }
-    },
-    skip: (_, res) => res.statusCode < 400
+    }
   }));
 }
 

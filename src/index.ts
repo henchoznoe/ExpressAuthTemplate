@@ -16,7 +16,6 @@ setupSwagger();
 setupRoutes();
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  logger.error(err.message || 'An unknown error occurred...');
   errorResponse(res, err.code || 500, err.message || 'An unknown error occurred...')
 });
 

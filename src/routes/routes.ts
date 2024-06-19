@@ -11,7 +11,6 @@ export const setupRoutes = () => {
   app.use('/api/users', usersRoutes);
   app.use('/api/roles', rolesRoutes);
   app.use((_: Request, res: Response) => {
-    logger.error('This route doesn\'t exist...');
     errorResponse(res, 404, 'This route doesn\'t exist...');
   });
 }
