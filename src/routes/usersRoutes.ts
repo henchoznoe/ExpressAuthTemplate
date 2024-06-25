@@ -1,11 +1,11 @@
 import express from 'express';
-import { allUsers, addUser, updateUser, deleteUser } from "../ctrl/users";
 import { authorizeRouteAccess } from "../middleware/routes-authorization";
+import { allUsers, addUser, updateUser, deleteUser } from "@ctrls/usersCtrl";
 import { check } from "express-validator";
 import { handleValidationErrors } from "../middleware/fields-validation";
-import { Role } from "../types/auth";
+import { Role } from "@type/auth";
 
-export const router = express.Router();
+export const usersRoutes = express.Router();
 
 /**
  * @swagger
@@ -19,7 +19,7 @@ export const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.get('/all', authorizeRouteAccess([Role.SUPER_ADMIN]), allUsers);
+usersRoutes.get('/all', authorizeRouteAccess([Role.SUPER_ADMIN]), allUsers);
 
 /**
  * @swagger
@@ -46,7 +46,7 @@ router.get('/all', authorizeRouteAccess([Role.SUPER_ADMIN]), allUsers);
  *       400:
  *         description: Invalid input
  */
-router.post(
+usersRoutes.post(
   '/add',
   [
     check('email').isEmail().withMessage('Bad email format.'),
@@ -83,7 +83,7 @@ router.post(
  *       400:
  *         description: Invalid input
  */
-router.patch(
+usersRoutes.patch(
   '/update/:id',
   [
     check('email').isEmail().withMessage('Bad email format.'),
@@ -107,7 +107,7 @@ router.patch(
  *       400:
  *         description: Invalid input
  */
-router.delete(
+usersRoutes.delete(
   '/delete/:id',
   authorizeRouteAccess([Role.SUPER_ADMIN]),
   deleteUser

@@ -1,6 +1,6 @@
-import { errorResponse, successResponse } from "../http/http-responses";
 import { Request, Response } from "express";
-import { getAllRoles } from "../wrk/roles";
+import { errorResponse, successResponse } from "@http/responses";
+import { getAllRoles } from "@services/rolesService";
 
 export const allRoles = async (_: Request, res: Response) => {
   try {

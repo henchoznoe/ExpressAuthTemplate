@@ -1,9 +1,8 @@
-import { app } from "../index";
+import { Application, Request, Response } from "express";
 import { createLogger, format, transports } from 'winston';
 import morgan from "morgan";
-import { Request, Response } from "express";
 
-export const setupLogger = () => {
+export const setupLogger = (app: Application) => {
 
   morgan.token('statusName', (_: Request, res: Response) => {
     return `${res.statusCode} - ${httpStatusDescriptions[res.statusCode] || 'Unknown Status'}`;

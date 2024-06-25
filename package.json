@@ -6,7 +6,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon src/index.ts",
+    "dev": "cross-env NODE_ENV=dev nodemon -r tsconfig-paths/register src/index.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
@@ -26,7 +26,6 @@
     "@prisma/client": "^5.15.0",
     "@types/winston": "^2.4.4",
     "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -35,6 +34,7 @@
     "morgan": "^1.10.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
+    "tsconfig-paths": "^4.2.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {

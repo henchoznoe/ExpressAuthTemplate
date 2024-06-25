@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { errorResponse, successResponse } from "../http/http-responses";
-import { addNewUser, deleteUserById, getAllUsers, updateUserById } from "../wrk/users";
+import { errorResponse, successResponse } from "@http/responses";
+import { addNewUser, deleteUserById, getAllUsers, updateUserById } from "@services/usersService";
 
 export const allUsers = async (_: Request, res: Response) => {
   try {

@@ -1,9 +1,9 @@
 import express from "express";
 import { authorizeRouteAccess } from "../middleware/routes-authorization";
-import { allRoles } from "../ctrl/roles";
-import { Role } from "../types/auth";
+import { allRoles } from "@ctrls/rolesCtrl";
+import { Role } from "@type/auth";
 
-export const router = express.Router();
+export const rolesRoutes = express.Router();
 
 /**
  * @swagger
@@ -17,7 +17,7 @@ export const router = express.Router();
  *       500:
  *         description: Server error
  */
-router.get(
+rolesRoutes.get(
   '/all',
   authorizeRouteAccess([Role.ADMIN, Role.SUPER_ADMIN]),
   allRoles

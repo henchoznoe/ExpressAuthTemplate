@@ -1,9 +1,9 @@
 import express from 'express';
 import { check } from "express-validator";
 import { handleValidationErrors } from "../middleware/fields-validation";
-import { signIn, signUp } from "../ctrl/auth";
+import { signIn, signUp } from "@ctrls/authCtrl";
 
-export const router = express.Router();
+export const authRoutes = express.Router();
 
 /**
  * @swagger
@@ -28,7 +28,7 @@ export const router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.post(
+authRoutes.post(
   '/sign-up',
   [
     check('email').isEmail().withMessage('Bad email format.'),
@@ -62,7 +62,7 @@ router.post(
  *       400:
  *         description: Invalid input
  */
-router.post(
+authRoutes.post(
   '/sign-in',
   [
     check('email').isEmail().withMessage('Bad email format.'),

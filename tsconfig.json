@@ -10,7 +10,14 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "src/types/*"]
+      "*": ["node_modules/*"],
+      "@src/*": ["./src/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@http/*": ["./src/http/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@type/*": ["./src/types/*"],
+      "@ctrls/*": ["./src/ctrls/*"],
+      "@services/*": ["./src/services/*"]
     }
   },
   "include": ["./src/**/*"]
