@@ -13,12 +13,8 @@ export const setupLogger = (app: Application) => {
   app.use(morgan(customFormat, {
     stream: {
       write: (message: string) => {
-        const statusCode = parseInt(message.split('[')[1].split(' - ')[0], 10);
-        if (statusCode < 400) {
-          logger.info(message.trim());
-        } else {
-          logger.error(message.trim());
-        }
+        const statusCode = parseInt(message.split('[')[1].split(' - ')[0]);
+        logger[statusCode < 400 ? 'info' : 'error'](message.trim());
       }
     }
   }));

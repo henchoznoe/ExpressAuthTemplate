@@ -8,7 +8,7 @@ const options = {
     info: {
       title: 'Express Auth Template API',
       version: '1.0.0',
-      description: 'A simple Express API',
+      description: 'A basic Express API template',
     },
   },
   apis: ['./src/routes/*.ts'],

@@ -1,8 +1,7 @@
 import express from 'express';
-import { authorizeRouteAccess } from "../middleware/routes-authorization";
+import { authorizeRouteAccess } from "@src/middleware/routes-authorization";
+import { handleValidationErrors, validateEmail, validatePassword, validateRoleId } from "@src/validator/schemas";
 import { allUsers, addUser, updateUser, deleteUser } from "@ctrls/usersCtrl";
-import { check } from "express-validator";
-import { handleValidationErrors } from "../middleware/fields-validation";
 import { Role } from "@type/auth";
 
 export const usersRoutes = express.Router();
@@ -19,7 +18,11 @@ export const usersRoutes = express.Router();
  *       500:
  *         description: Server error
  */
-usersRoutes.get('/all', authorizeRouteAccess([Role.SUPER_ADMIN]), allUsers);
+usersRoutes.get(
+  '/all',
+  authorizeRouteAccess([Role.SUPER_ADMIN]),
+  allUsers
+);
 
 /**
  * @swagger
@@ -48,11 +51,7 @@ usersRoutes.get('/all', authorizeRouteAccess([Role.SUPER_ADMIN]), allUsers);
  */
 usersRoutes.post(
   '/add',
-  [
-    check('email').isEmail().withMessage('Bad email format.'),
-    check('password').notEmpty().escape().withMessage('Bad password format.'),
-    check('roleId').isNumeric().withMessage('Bad role format.'),
-  ],
+  [validateEmail, validatePassword, validateRoleId],
   handleValidationErrors,
   authorizeRouteAccess([Role.ADMIN, Role.SUPER_ADMIN]),
   addUser
@@ -85,11 +84,7 @@ usersRoutes.post(
  */
 usersRoutes.patch(
   '/update/:id',
-  [
-    check('email').isEmail().withMessage('Bad email format.'),
-    check('password').notEmpty().escape().withMessage('Bad password format.'),
-    check('roleId').isNumeric().withMessage('Bad role format.'),
-  ],
+  [validateEmail, validatePassword, validateRoleId],
   handleValidationErrors,
   authorizeRouteAccess([Role.SUPER_ADMIN]),
   updateUser

@@ -1,5 +1,6 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 import { logger, setupLogger } from "@lib/logger";
 import { setupSwagger } from "@lib/swagger";
 import { errorResponse } from "@http/responses";
@@ -10,12 +11,11 @@ import { rolesRoutes } from "@routes/rolesRoutes";
 const app: Application = express();
 
 // CORS
-app.use((_: Request, res: Response, next: NextFunction) => {
-  res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN);
-  res.setHeader('Access-Control-Allow-Headers', process.env.CORS_HEADERS);
-  res.setHeader('Access-Control-Allow-Methods', process.env.CORS_METHODS);
-  next();
-});
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  methods: process.env.CORS_METHODS,
+  allowedHeaders: process.env.CORS_HEADERS,
+}));
 
 // JSON Parser
 app.use(express.json());
@@ -30,8 +30,8 @@ setupSwagger(app);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/roles', rolesRoutes);
-app.use((_: Request, res: Response) => {
-  errorResponse(res, 404, 'This route doesn\'t exist...');
+app.use((req: Request, res: Response) => {
+  errorResponse(res, 404, `The route you are looking for [${req.path}] does not exist...`);
 });
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

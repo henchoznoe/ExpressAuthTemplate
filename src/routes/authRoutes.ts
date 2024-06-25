@@ -1,6 +1,5 @@
 import express from 'express';
-import { check } from "express-validator";
-import { handleValidationErrors } from "../middleware/fields-validation";
+import { handleValidationErrors, validateEmail, validatePassword } from "@src/validator/schemas";
 import { signIn, signUp } from "@ctrls/authCtrl";
 
 export const authRoutes = express.Router();
@@ -30,10 +29,7 @@ export const authRoutes = express.Router();
  */
 authRoutes.post(
   '/sign-up',
-  [
-    check('email').isEmail().withMessage('Bad email format.'),
-    check('password').notEmpty().escape().withMessage('Bad password format.')
-  ],
+  [validateEmail, validatePassword],
   handleValidationErrors,
   signUp
 );
@@ -64,10 +60,7 @@ authRoutes.post(
  */
 authRoutes.post(
   '/sign-in',
-  [
-    check('email').isEmail().withMessage('Bad email format.'),
-    check('password').notEmpty().escape().withMessage('Bad password format.')
-  ],
+  [validateEmail, validatePassword],
   handleValidationErrors,
   signIn
 );

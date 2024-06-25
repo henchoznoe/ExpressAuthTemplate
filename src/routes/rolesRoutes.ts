@@ -1,5 +1,5 @@
 import express from "express";
-import { authorizeRouteAccess } from "../middleware/routes-authorization";
+import { authorizeRouteAccess } from "@src/middleware/routes-authorization";
 import { allRoles } from "@ctrls/rolesCtrl";
 import { Role } from "@type/auth";
 

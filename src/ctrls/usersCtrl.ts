@@ -14,7 +14,7 @@ export const allUsers = async (_: Request, res: Response) => {
 export const addUser = async (req: Request, res: Response) => {
   try {
     const { email, password, roleId } = req.body;
-    const newUser = await addNewUser(email, password, roleId);
+    const newUser = await addNewUser(email, password, parseInt(roleId));
     return successResponse(res, 201, `User ${newUser.email} created successfully`, newUser);
   } catch ( err ) {
     return errorResponse(res, err.statusCode || 500, err.message || 'Server error');
@@ -25,7 +25,7 @@ export const updateUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { email, password, roleId } = req.body;
-    const updatedUser = await updateUserById(id, email, password, roleId);
+    const updatedUser = await updateUserById(id, email, password, parseInt(roleId));
     return successResponse(res, 200, `User with id ${id} updated successfully`, updatedUser);
   } catch ( err ) {
     return errorResponse(res, err.statusCode || 500, err.message || 'Server error');
