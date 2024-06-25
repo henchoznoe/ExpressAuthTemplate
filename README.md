@@ -30,7 +30,7 @@ If you need to apply migrations (recommended for production setups), use:
 npx prisma migrate dev --name init
 ```
 
-### 5. Add roles in the database and edit the enum in `src/types/authCtrl.ts` if needed 
+### 5. Add roles in the database and edit the enum in `src/types/auth.ts` if needed 
 Run the following command in your database:
 ```sql
 INSERT INTO "Role" VALUES (1, 'SuperAdmin'), (2, 'Admin'), (3, 'User');
