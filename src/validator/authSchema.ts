@@ -1,12 +1,4 @@
-import { check, validationResult } from "express-validator";
-import { NextFunction, Request, Response } from "express";
-import { errorResponse } from "@http/responses";
-
-export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
-  const errors = validationResult(req);
-  if ( !errors.isEmpty() ) return errorResponse(res, 400, errors.array()[0].msg);
-  next();
-};
+import { check } from "express-validator";
 
 export const validateEmail =
   check('email')

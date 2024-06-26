@@ -1,8 +1,9 @@
 import express from 'express';
 import { authorizeAccess } from "@src/middlewares/routesAuthorization";
-import { handleValidationErrors, validateEmail, validatePassword, validateRoleId } from "@src/validator/authSchema";
+import { validateEmail, validatePassword, validateRoleId } from "@src/validator/authSchema";
 import { allUsers, addUser, updateUser, deleteUser } from "@src/controllers/usersCtrl";
 import { Role } from "@type/auth";
+import { fieldsValidation } from "@src/middlewares/fieldsValidation";
 
 export const usersRoutes = express.Router();
 
@@ -52,7 +53,7 @@ usersRoutes.get(
 usersRoutes.post(
   '/add',
   [validateEmail, validatePassword, validateRoleId],
-  handleValidationErrors,
+  fieldsValidation,
   authorizeAccess([Role.ADMIN, Role.SUPER_ADMIN]),
   addUser
 );
@@ -85,7 +86,7 @@ usersRoutes.post(
 usersRoutes.patch(
   '/update/:id',
   [validateEmail, validatePassword, validateRoleId],
-  handleValidationErrors,
+  fieldsValidation,
   authorizeAccess([Role.SUPER_ADMIN]),
   updateUser
 );

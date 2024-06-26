@@ -1,6 +1,7 @@
 import express from 'express';
-import { handleValidationErrors, validateEmail, validatePassword } from "@src/validator/authSchema";
+import { validateEmail, validatePassword } from "@src/validator/authSchema";
 import { signIn, signUp } from "@src/controllers/authCtrl";
+import { fieldsValidation } from "@src/middlewares/fieldsValidation";
 
 export const authRoutes = express.Router();
 
@@ -30,7 +31,7 @@ export const authRoutes = express.Router();
 authRoutes.post(
   '/sign-up',
   [validateEmail, validatePassword],
-  handleValidationErrors,
+  fieldsValidation,
   signUp
 );
 
@@ -61,6 +62,6 @@ authRoutes.post(
 authRoutes.post(
   '/sign-in',
   [validateEmail, validatePassword],
-  handleValidationErrors,
+  fieldsValidation,
   signIn
 );

@@ -3,8 +3,8 @@ import 'dotenv/config';
 import { setupCors } from "@lib/cors";
 import { logger, setupLogger } from "@lib/logger";
 import { setupSwagger } from "@lib/swagger";
-import { globalErrorHandler } from "@src/middlewares/globalErrorHandler";
 import { setupRoutes } from "@lib/routes";
+import { globalErrorHandler } from "@src/middlewares/globalErrorHandler";
 
 const app: Application = express();
 
