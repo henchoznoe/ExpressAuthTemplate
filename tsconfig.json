@@ -16,7 +16,7 @@
       "@http/*": ["./src/http/*"],
       "@routes/*": ["./src/routes/*"],
       "@type/*": ["./src/types/*"],
-      "@ctrls/*": ["./src/ctrls/*"],
+      "@controllers/*": ["./src/controllers/*"],
       "@services/*": ["./src/services/*"]
     }
   },

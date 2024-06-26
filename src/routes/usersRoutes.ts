@@ -1,7 +1,7 @@
 import express from 'express';
-import { authorizeRouteAccess } from "@src/middleware/routes-authorization";
-import { handleValidationErrors, validateEmail, validatePassword, validateRoleId } from "@src/validator/schemas";
-import { allUsers, addUser, updateUser, deleteUser } from "@ctrls/usersCtrl";
+import { authorizeAccess } from "@src/middlewares/routesAuthorization";
+import { handleValidationErrors, validateEmail, validatePassword, validateRoleId } from "@src/validator/authSchema";
+import { allUsers, addUser, updateUser, deleteUser } from "@src/controllers/usersCtrl";
 import { Role } from "@type/auth";
 
 export const usersRoutes = express.Router();
@@ -20,7 +20,7 @@ export const usersRoutes = express.Router();
  */
 usersRoutes.get(
   '/all',
-  authorizeRouteAccess([Role.SUPER_ADMIN]),
+  authorizeAccess([Role.SUPER_ADMIN]),
   allUsers
 );
 
@@ -53,7 +53,7 @@ usersRoutes.post(
   '/add',
   [validateEmail, validatePassword, validateRoleId],
   handleValidationErrors,
-  authorizeRouteAccess([Role.ADMIN, Role.SUPER_ADMIN]),
+  authorizeAccess([Role.ADMIN, Role.SUPER_ADMIN]),
   addUser
 );
 
@@ -86,7 +86,7 @@ usersRoutes.patch(
   '/update/:id',
   [validateEmail, validatePassword, validateRoleId],
   handleValidationErrors,
-  authorizeRouteAccess([Role.SUPER_ADMIN]),
+  authorizeAccess([Role.SUPER_ADMIN]),
   updateUser
 );
 
@@ -104,6 +104,6 @@ usersRoutes.patch(
  */
 usersRoutes.delete(
   '/delete/:id',
-  authorizeRouteAccess([Role.SUPER_ADMIN]),
+  authorizeAccess([Role.SUPER_ADMIN]),
   deleteUser
 );

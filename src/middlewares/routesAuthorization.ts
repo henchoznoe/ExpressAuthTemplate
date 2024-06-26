@@ -3,7 +3,7 @@ import { errorResponse } from "@http/responses";
 import { JsonWebTokenError, NotBeforeError, TokenExpiredError, verify, VerifyErrors } from "jsonwebtoken";
 import { JWTPayloadType } from "@type/auth";
 
-export const authorizeRouteAccess = (roles: number[] = []) => {
+export const authorizeAccess = (roles: number[] = []) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     if ( !authHeader ) return errorResponse(res, 401, 'No token provided');

@@ -1,6 +1,6 @@
 import express from 'express';
-import { handleValidationErrors, validateEmail, validatePassword } from "@src/validator/schemas";
-import { signIn, signUp } from "@ctrls/authCtrl";
+import { handleValidationErrors, validateEmail, validatePassword } from "@src/validator/authSchema";
+import { signIn, signUp } from "@src/controllers/authCtrl";
 
 export const authRoutes = express.Router();
 

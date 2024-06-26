@@ -1,6 +1,6 @@
 import express from "express";
-import { authorizeRouteAccess } from "@src/middleware/routes-authorization";
-import { allRoles } from "@ctrls/rolesCtrl";
+import { authorizeAccess } from "@src/middlewares/routesAuthorization";
+import { allRoles } from "@src/controllers/rolesCtrl";
 import { Role } from "@type/auth";
 
 export const rolesRoutes = express.Router();
@@ -19,6 +19,6 @@ export const rolesRoutes = express.Router();
  */
 rolesRoutes.get(
   '/all',
-  authorizeRouteAccess([Role.ADMIN, Role.SUPER_ADMIN]),
+  authorizeAccess([Role.ADMIN, Role.SUPER_ADMIN]),
   allRoles
 );
