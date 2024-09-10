@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { errorResponse } from "@http/responses";
+import { Response, Request, NextFunction } from "express";
+import { errorResponse } from "../http/responses";
 import { JsonWebTokenError, NotBeforeError, TokenExpiredError, verify, VerifyErrors } from "jsonwebtoken";
-import { JWTPayloadType } from "@type/auth";
+import { JWTPayloadType } from "../types/auth";
 
 export const authorizeAccess = (roles: number[] = []) => {
   return (req: Request, res: Response, next: NextFunction) => {

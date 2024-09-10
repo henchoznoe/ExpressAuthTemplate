@@ -1,10 +1,11 @@
 import express, { Application } from 'express';
 import 'dotenv/config';
-import { setupCors } from "@lib/cors";
-import { logger, setupLogger } from "@lib/logger";
-import { setupSwagger } from "@lib/swagger";
-import { setupRoutes } from "@lib/routes";
-import { globalErrorHandler } from "@src/middlewares/globalErrorHandler";
+import { setupCors } from "./lib/cors";
+import { setupLogger } from "./lib/logger";
+import { setupSwagger } from "./lib/swagger";
+import { setupRoutes } from "./lib/routes";
+import { logger } from "./lib/logger";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 
 const app: Application = express();
 

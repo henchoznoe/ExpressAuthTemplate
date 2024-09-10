@@ -1,4 +1,4 @@
-import { db } from "@lib/prisma";
+import { db } from "../lib/prisma";
 
 export const getAllRoles = async () => {
   return db.role.findMany({

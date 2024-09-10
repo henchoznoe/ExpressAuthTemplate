@@ -1,6 +1,6 @@
-import { db } from "@lib/prisma";
-import { User, Role } from "@prisma/client";
-import { HttpError } from "@http/error";
+import { db } from "../lib/prisma";
+import { Role, User } from "@prisma/client";
+import { HttpError } from "../http/error";
 import { hash } from "bcrypt";
 
 export const getAllUsers = async () => {

@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { logger } from "@lib/logger";
-import { ResponseType } from "@type/response";
+import { logger } from "../lib/logger";
+import { ResponseType } from "../types/response";
 
 // Send a success or error response to client
 const sendResponse = (res: Response, statusCode: number, success: boolean, message: string, data?: any): void => {

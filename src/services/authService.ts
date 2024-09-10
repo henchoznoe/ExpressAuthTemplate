@@ -1,9 +1,9 @@
-import { db } from "@lib/prisma";
-import { HttpError } from "@http/error";
-import { compare, hash } from "bcrypt";
-import { sign } from "jsonwebtoken";
 import { User } from "@prisma/client";
-import { JWTPayloadType, Role } from "@type/auth";
+import { db } from "../lib/prisma";
+import { HttpError } from "../http/error";
+import { compare, hash } from "bcrypt";
+import { JWTPayloadType, Role } from "../types/auth";
+import { sign } from "jsonwebtoken";
 
 export const createUser = async (email: string, password: string) => {
   const existingUser: User = await db.user.findUnique({

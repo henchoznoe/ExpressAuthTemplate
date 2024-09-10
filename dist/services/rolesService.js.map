@@ -1,0 +1,1 @@
+{"version":3,"file":"rolesService.js","sourceRoot":"","sources":["../../src/services/rolesService.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,0CAAmC;AAE5B,MAAM,WAAW,GAAG,GAAS,EAAE;IACpC,OAAO,WAAE,CAAC,IAAI,CAAC,QAAQ,CAAC;QACtB,MAAM,EAAE;YACN,EAAE,EAAE,IAAI;YACR,KAAK,EAAE,IAAI;SACZ;KACF,CAAC,CAAC;AACL,CAAC,CAAA,CAAA;AAPY,QAAA,WAAW,eAOvB"}

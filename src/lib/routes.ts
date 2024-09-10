@@ -1,8 +1,8 @@
 import { Application, Request, Response } from "express";
-import { errorResponse } from "@http/responses";
-import { authRoutes } from "@routes/authRoutes";
-import { usersRoutes } from "@routes/usersRoutes";
-import { rolesRoutes } from "@routes/rolesRoutes";
+import { authRoutes } from "../routes/authRoutes";
+import { usersRoutes } from "../routes/usersRoutes";
+import { rolesRoutes } from "../routes/rolesRoutes";
+import { errorResponse } from "../http/responses";
 
 export const setupRoutes = (app: Application) => {
   app.use('/api/auth', authRoutes);

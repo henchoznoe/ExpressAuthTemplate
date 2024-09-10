@@ -1,9 +1,9 @@
-import express from 'express';
-import { authorizeAccess } from "@src/middlewares/routesAuthorization";
-import { validateEmail, validatePassword, validateRoleId } from "@src/validator/authSchema";
-import { allUsers, addUser, updateUser, deleteUser } from "@src/controllers/usersCtrl";
-import { Role } from "@type/auth";
-import { fieldsValidation } from "@src/middlewares/fieldsValidation";
+import express from "express";
+import { authorizeAccess } from "../middlewares/routesAuthorization";
+import { Role } from "../types/auth";
+import { addUser, allUsers, deleteUser, updateUser } from "../controllers/usersCtrl";
+import { validateEmail, validatePassword, validateRoleId } from "../validator/authSchema";
+import { fieldsValidation } from "../middlewares/fieldsValidation";
 
 export const usersRoutes = express.Router();
 

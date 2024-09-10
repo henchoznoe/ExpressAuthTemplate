@@ -26,13 +26,6 @@ const customFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} [${level}] ${message}`;
 });
 
-const transportOptions = process.env.NODE_ENV === 'dev'
-  ? [new transports.Console()]
-  : [
-    new transports.File({ filename: 'logs/error.log', level: 'error' }),
-    new transports.File({ filename: 'logs/all.log' })
-  ];
-
 export const logger = createLogger({
   level: 'info',
   format: combine(
@@ -42,7 +35,7 @@ export const logger = createLogger({
     colorize(),
     customFormat
   ),
-  transports: transportOptions
+  transports: [new transports.Console()]
 });
 
 const httpStatusDescriptions: { [key: number]: string } = {

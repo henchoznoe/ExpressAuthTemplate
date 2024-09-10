@@ -1,6 +1,6 @@
+import { errorResponse, successResponse } from "../http/responses";
+import { authenticateUser, createUser } from "../services/authService";
 import { Request, Response } from "express";
-import { errorResponse, successResponse } from "@http/responses";
-import { authenticateUser, createUser } from "@services/authService";
 
 export const signUp = async (req: Request, res: Response) => {
   try {

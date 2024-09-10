@@ -1,7 +1,7 @@
-import express from 'express';
-import { validateEmail, validatePassword } from "@src/validator/authSchema";
-import { signIn, signUp } from "@src/controllers/authCtrl";
-import { fieldsValidation } from "@src/middlewares/fieldsValidation";
+import express from "express";
+import { validateEmail, validatePassword } from "../validator/authSchema";
+import { fieldsValidation } from "../middlewares/fieldsValidation";
+import { signIn, signUp } from "../controllers/authCtrl";
 
 export const authRoutes = express.Router();
 

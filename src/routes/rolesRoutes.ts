@@ -1,7 +1,7 @@
 import express from "express";
-import { authorizeAccess } from "@src/middlewares/routesAuthorization";
-import { allRoles } from "@src/controllers/rolesCtrl";
-import { Role } from "@type/auth";
+import { authorizeAccess } from "../middlewares/routesAuthorization";
+import { Role } from "../types/auth";
+import { allRoles } from "../controllers/rolesCtrl";
 
 export const rolesRoutes = express.Router();
 
